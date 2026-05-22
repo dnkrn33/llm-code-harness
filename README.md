@@ -23,6 +23,11 @@ python harness.py index
 ```
 
 When used from a Codex skill or another folder, the harness operates on the current working directory by default. Set `HARNESS_ROOT=/path/to/project` to target a different project.
+You can also pass `--root` before the command:
+
+```bash
+python harness.py --root /path/to/project index
+```
 
 No Python packages are required. If `ripgrep` is installed, keep it in the command allowlist for agent workflows that need fast searching.
 
@@ -32,6 +37,12 @@ Build or refresh the local index:
 
 ```bash
 python harness.py index
+```
+
+Check the active root, config, index, Python version, and local tools:
+
+```bash
+python harness.py doctor
 ```
 
 Retrieve compact context for a task:

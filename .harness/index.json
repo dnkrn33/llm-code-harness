@@ -1,7 +1,7 @@
 {
   "version": 1,
   "root": "C:\\Users\\ADMIN\\Documents\\Codex-Harness\\llm-harness",
-  "generated_at": "2026-05-22T09:58:37.547368+00:00",
+  "generated_at": "2026-05-22T10:03:47.229637+00:00",
   "file_count": 12,
   "skipped_count": 1,
   "files": [
@@ -61,90 +61,102 @@
     },
     {
       "path": "harness.py",
-      "size": 6710,
+      "size": 7921,
       "extension": ".py",
       "kind": "source",
       "symbols": [
         {
-          "name": "load_config",
+          "name": "configure_paths",
           "type": "function",
           "line": 31,
-          "end_line": 64
+          "end_line": 38
+        },
+        {
+          "name": "load_config",
+          "type": "function",
+          "line": 44,
+          "end_line": 77
         },
         {
           "name": "print_json",
           "type": "function",
-          "line": 67,
-          "end_line": 68
+          "line": 80,
+          "end_line": 81
         },
         {
           "name": "cmd_index",
           "type": "function",
-          "line": 71,
-          "end_line": 82
+          "line": 84,
+          "end_line": 95
         },
         {
           "name": "cmd_context",
           "type": "function",
-          "line": 85,
-          "end_line": 98
+          "line": 98,
+          "end_line": 111
         },
         {
           "name": "cmd_logs",
           "type": "function",
-          "line": 101,
-          "end_line": 113
+          "line": 114,
+          "end_line": 126
         },
         {
           "name": "cmd_run",
           "type": "function",
-          "line": 116,
-          "end_line": 130
+          "line": 129,
+          "end_line": 143
         },
         {
           "name": "cmd_patch",
           "type": "function",
-          "line": 133,
-          "end_line": 143
+          "line": 146,
+          "end_line": 156
+        },
+        {
+          "name": "cmd_doctor",
+          "type": "function",
+          "line": 159,
+          "end_line": 176
         },
         {
           "name": "cmd_report",
           "type": "function",
-          "line": 146,
-          "end_line": 148
+          "line": 179,
+          "end_line": 181
         },
         {
           "name": "build_parser",
           "type": "function",
-          "line": 151,
-          "end_line": 171
+          "line": 184,
+          "end_line": 207
         },
         {
           "name": "main",
           "type": "function",
-          "line": 174,
-          "end_line": 177
+          "line": 210,
+          "end_line": 214
         }
       ],
       "routes": [
         {
-          "line": 22,
+          "line": 24,
           "snippet": "SCRIPT_DIR = Path(__file__).resolve().parent"
         },
         {
-          "line": 23,
-          "snippet": "ROOT = Path(os.environ.get(\"HARNESS_ROOT\", Path.cwd())).resolve()"
+          "line": 33,
+          "snippet": "ROOT = Path(root or os.environ.get(\"HARNESS_ROOT\", Path.cwd())).resolve()"
         },
         {
-          "line": 104,
+          "line": 117,
           "snippet": "result = reduce_log(Path(args.path), limit=limit)"
         },
         {
-          "line": 109,
+          "line": 122,
           "snippet": "\"tokens_saved_estimate\": max(0, Path(args.path).stat().st_size // 4 - len(json.dumps(result)) // 4),"
         },
         {
-          "line": 134,
+          "line": 147,
           "snippet": "result = apply_patch(ROOT, Path(args.path))"
         }
       ],
@@ -152,24 +164,24 @@
     },
     {
       "path": "README.md",
-      "size": 4541,
+      "size": 4750,
       "extension": ".md",
       "kind": "text",
       "symbols": [
         {
           "name": "allowlist",
           "type": "function",
-          "line": 103
+          "line": 114
         }
       ],
       "routes": [],
       "error_patterns": [
         {
-          "line": 46,
+          "line": 57,
           "snippet": "python harness.py logs /var/log/apache2/error.log"
         },
         {
-          "line": 71,
+          "line": 82,
           "snippet": "The indexer stores metadata in `.harness/index.json`: filenames, file kinds, symbols, routes, SQL/config files, and error-looking snippets. The retriever scores files against the task, then extracts matching functions, classes, nearby impor"
         }
       ]

@@ -7,6 +7,8 @@ import argparse
 import json
 import os
 import re
+import shutil
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -20,12 +22,23 @@ from modules.security import redact
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-ROOT = Path(os.environ.get("HARNESS_ROOT", Path.cwd())).resolve()
-HARNESS_DIR = ROOT / ".harness"
-INDEX_PATH = HARNESS_DIR / "index.json"
-CONFIG_PATH = ROOT / "config.yaml"
-if not CONFIG_PATH.exists():
-    CONFIG_PATH = SCRIPT_DIR / "config.yaml"
+ROOT: Path
+HARNESS_DIR: Path
+INDEX_PATH: Path
+CONFIG_PATH: Path
+
+
+def configure_paths(root: str | Path | None = None) -> None:
+    global ROOT, HARNESS_DIR, INDEX_PATH, CONFIG_PATH
+    ROOT = Path(root or os.environ.get("HARNESS_ROOT", Path.cwd())).resolve()
+    HARNESS_DIR = ROOT / ".harness"
+    INDEX_PATH = HARNESS_DIR / "index.json"
+    CONFIG_PATH = ROOT / "config.yaml"
+    if not CONFIG_PATH.exists():
+        CONFIG_PATH = SCRIPT_DIR / "config.yaml"
+
+
+configure_paths()
 
 
 def load_config() -> dict[str, Any]:
@@ -143,6 +156,26 @@ def cmd_patch(args: argparse.Namespace) -> None:
     print_json(result)
 
 
+def cmd_doctor(_: argparse.Namespace) -> None:
+    config = load_config()
+    tools = {
+        "git": shutil.which("git"),
+        "rg": shutil.which("rg"),
+        "grep": shutil.which("grep"),
+        "python": sys.executable,
+    }
+    print_json({
+        "root": str(ROOT),
+        "script_dir": str(SCRIPT_DIR),
+        "config": str(CONFIG_PATH),
+        "index_exists": INDEX_PATH.exists(),
+        "report_exists": (HARNESS_DIR / "report.json").exists(),
+        "python_version": sys.version.split()[0],
+        "tools": tools,
+        "allowlist_count": len(config.get("allowlist", [])) if isinstance(config.get("allowlist"), list) else 0,
+    })
+
+
 def cmd_report(_: argparse.Namespace) -> None:
     report = json.loads(redact(json.dumps(summarize_report(ROOT))))
     print_json(report)
@@ -150,6 +183,7 @@ def cmd_report(_: argparse.Namespace) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Local LLM Code Harness")
+    parser.add_argument("--root", help="project root to inspect; defaults to HARNESS_ROOT or current directory")
     sub = parser.add_subparsers(required=True)
     index_cmd = sub.add_parser("index", help="scan repository and build .harness/index.json")
     index_cmd.set_defaults(func=cmd_index)
@@ -166,6 +200,8 @@ def build_parser() -> argparse.ArgumentParser:
     patch_cmd = sub.add_parser("patch", help="apply a unified diff patch with backups")
     patch_cmd.add_argument("path")
     patch_cmd.set_defaults(func=cmd_patch)
+    doctor_cmd = sub.add_parser("doctor", help="show harness configuration and available local tools")
+    doctor_cmd.set_defaults(func=cmd_doctor)
     report_cmd = sub.add_parser("report", help="show token-saving task report")
     report_cmd.set_defaults(func=cmd_report)
     return parser
@@ -174,6 +210,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
+    configure_paths(args.root)
     args.func(args)
 
 
