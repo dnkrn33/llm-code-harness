@@ -1,9 +1,9 @@
 {
   "version": 1,
   "root": "C:\\Users\\ADMIN\\Documents\\Codex-Harness\\llm-harness",
-  "generated_at": "2026-05-22T09:37:04.349185+00:00",
+  "generated_at": "2026-05-22T09:58:37.547368+00:00",
   "file_count": 12,
-  "skipped_count": 0,
+  "skipped_count": 1,
   "files": [
     {
       "path": ".gitignore",
@@ -61,86 +61,90 @@
     },
     {
       "path": "harness.py",
-      "size": 6554,
+      "size": 6710,
       "extension": ".py",
       "kind": "source",
       "symbols": [
         {
           "name": "load_config",
           "type": "function",
-          "line": 27,
-          "end_line": 60
+          "line": 31,
+          "end_line": 64
         },
         {
           "name": "print_json",
           "type": "function",
-          "line": 63,
-          "end_line": 64
+          "line": 67,
+          "end_line": 68
         },
         {
           "name": "cmd_index",
           "type": "function",
-          "line": 67,
-          "end_line": 78
+          "line": 71,
+          "end_line": 82
         },
         {
           "name": "cmd_context",
           "type": "function",
-          "line": 81,
-          "end_line": 94
+          "line": 85,
+          "end_line": 98
         },
         {
           "name": "cmd_logs",
           "type": "function",
-          "line": 97,
-          "end_line": 109
+          "line": 101,
+          "end_line": 113
         },
         {
           "name": "cmd_run",
           "type": "function",
-          "line": 112,
-          "end_line": 126
+          "line": 116,
+          "end_line": 130
         },
         {
           "name": "cmd_patch",
           "type": "function",
-          "line": 129,
-          "end_line": 139
+          "line": 133,
+          "end_line": 143
         },
         {
           "name": "cmd_report",
           "type": "function",
-          "line": 142,
-          "end_line": 144
+          "line": 146,
+          "end_line": 148
         },
         {
           "name": "build_parser",
           "type": "function",
-          "line": 147,
-          "end_line": 167
+          "line": 151,
+          "end_line": 171
         },
         {
           "name": "main",
           "type": "function",
-          "line": 170,
-          "end_line": 173
+          "line": 174,
+          "end_line": 177
         }
       ],
       "routes": [
         {
-          "line": 21,
-          "snippet": "ROOT = Path(__file__).resolve().parent"
+          "line": 22,
+          "snippet": "SCRIPT_DIR = Path(__file__).resolve().parent"
         },
         {
-          "line": 100,
+          "line": 23,
+          "snippet": "ROOT = Path(os.environ.get(\"HARNESS_ROOT\", Path.cwd())).resolve()"
+        },
+        {
+          "line": 104,
           "snippet": "result = reduce_log(Path(args.path), limit=limit)"
         },
         {
-          "line": 105,
+          "line": 109,
           "snippet": "\"tokens_saved_estimate\": max(0, Path(args.path).stat().st_size // 4 - len(json.dumps(result)) // 4),"
         },
         {
-          "line": 130,
+          "line": 134,
           "snippet": "result = apply_patch(ROOT, Path(args.path))"
         }
       ],
@@ -148,24 +152,24 @@
     },
     {
       "path": "README.md",
-      "size": 4228,
+      "size": 4541,
       "extension": ".md",
       "kind": "text",
       "symbols": [
         {
           "name": "allowlist",
           "type": "function",
-          "line": 101
+          "line": 103
         }
       ],
       "routes": [],
       "error_patterns": [
         {
-          "line": 44,
+          "line": 46,
           "snippet": "python harness.py logs /var/log/apache2/error.log"
         },
         {
-          "line": 69,
+          "line": 71,
           "snippet": "The indexer stores metadata in `.harness/index.json`: filenames, file kinds, symbols, routes, SQL/config files, and error-looking snippets. The retriever scores files against the task, then extracts matching functions, classes, nearby impor"
         }
       ]
@@ -556,5 +560,10 @@
       "error_patterns": []
     }
   ],
-  "skipped": []
+  "skipped": [
+    {
+      "path": "LICENSE",
+      "reason": "unsupported/binary extension"
+    }
+  ]
 }

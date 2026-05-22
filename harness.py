@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 from pathlib import Path
 from typing import Any
@@ -18,10 +19,13 @@ from modules.retriever import build_context_bundle
 from modules.security import redact
 
 
-ROOT = Path(__file__).resolve().parent
+SCRIPT_DIR = Path(__file__).resolve().parent
+ROOT = Path(os.environ.get("HARNESS_ROOT", Path.cwd())).resolve()
 HARNESS_DIR = ROOT / ".harness"
 INDEX_PATH = HARNESS_DIR / "index.json"
 CONFIG_PATH = ROOT / "config.yaml"
+if not CONFIG_PATH.exists():
+    CONFIG_PATH = SCRIPT_DIR / "config.yaml"
 
 
 def load_config() -> dict[str, Any]:

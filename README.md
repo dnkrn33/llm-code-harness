@@ -22,6 +22,8 @@ cd llm-harness
 python harness.py index
 ```
 
+When used from a Codex skill or another folder, the harness operates on the current working directory by default. Set `HARNESS_ROOT=/path/to/project` to target a different project.
+
 No Python packages are required. If `ripgrep` is installed, keep it in the command allowlist for agent workflows that need fast searching.
 
 ## Usage
