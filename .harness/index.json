@@ -1,0 +1,560 @@
+{
+  "version": 1,
+  "root": "C:\\Users\\ADMIN\\Documents\\Codex-Harness\\llm-harness",
+  "generated_at": "2026-05-22T09:37:04.349185+00:00",
+  "file_count": 12,
+  "skipped_count": 0,
+  "files": [
+    {
+      "path": ".gitignore",
+      "size": 62,
+      "extension": "",
+      "kind": "config",
+      "symbols": [],
+      "routes": [],
+      "error_patterns": []
+    },
+    {
+      "path": "config.yaml",
+      "size": 387,
+      "extension": ".yaml",
+      "kind": "config",
+      "symbols": [
+        {
+          "name": "ignore_dirs",
+          "type": "function",
+          "line": 4
+        },
+        {
+          "name": "allowlist",
+          "type": "function",
+          "line": 12
+        },
+        {
+          "name": "context",
+          "type": "function",
+          "line": 23
+        },
+        {
+          "name": "max_files",
+          "type": "function",
+          "line": 24
+        },
+        {
+          "name": "radius_lines",
+          "type": "function",
+          "line": 25
+        },
+        {
+          "name": "logs",
+          "type": "function",
+          "line": 27
+        },
+        {
+          "name": "max_blocks",
+          "type": "function",
+          "line": 28
+        }
+      ],
+      "routes": [],
+      "error_patterns": []
+    },
+    {
+      "path": "harness.py",
+      "size": 6554,
+      "extension": ".py",
+      "kind": "source",
+      "symbols": [
+        {
+          "name": "load_config",
+          "type": "function",
+          "line": 27,
+          "end_line": 60
+        },
+        {
+          "name": "print_json",
+          "type": "function",
+          "line": 63,
+          "end_line": 64
+        },
+        {
+          "name": "cmd_index",
+          "type": "function",
+          "line": 67,
+          "end_line": 78
+        },
+        {
+          "name": "cmd_context",
+          "type": "function",
+          "line": 81,
+          "end_line": 94
+        },
+        {
+          "name": "cmd_logs",
+          "type": "function",
+          "line": 97,
+          "end_line": 109
+        },
+        {
+          "name": "cmd_run",
+          "type": "function",
+          "line": 112,
+          "end_line": 126
+        },
+        {
+          "name": "cmd_patch",
+          "type": "function",
+          "line": 129,
+          "end_line": 139
+        },
+        {
+          "name": "cmd_report",
+          "type": "function",
+          "line": 142,
+          "end_line": 144
+        },
+        {
+          "name": "build_parser",
+          "type": "function",
+          "line": 147,
+          "end_line": 167
+        },
+        {
+          "name": "main",
+          "type": "function",
+          "line": 170,
+          "end_line": 173
+        }
+      ],
+      "routes": [
+        {
+          "line": 21,
+          "snippet": "ROOT = Path(__file__).resolve().parent"
+        },
+        {
+          "line": 100,
+          "snippet": "result = reduce_log(Path(args.path), limit=limit)"
+        },
+        {
+          "line": 105,
+          "snippet": "\"tokens_saved_estimate\": max(0, Path(args.path).stat().st_size // 4 - len(json.dumps(result)) // 4),"
+        },
+        {
+          "line": 130,
+          "snippet": "result = apply_patch(ROOT, Path(args.path))"
+        }
+      ],
+      "error_patterns": []
+    },
+    {
+      "path": "README.md",
+      "size": 4228,
+      "extension": ".md",
+      "kind": "text",
+      "symbols": [
+        {
+          "name": "allowlist",
+          "type": "function",
+          "line": 101
+        }
+      ],
+      "routes": [],
+      "error_patterns": [
+        {
+          "line": 44,
+          "snippet": "python harness.py logs /var/log/apache2/error.log"
+        },
+        {
+          "line": 69,
+          "snippet": "The indexer stores metadata in `.harness/index.json`: filenames, file kinds, symbols, routes, SQL/config files, and error-looking snippets. The retriever scores files against the task, then extracts matching functions, classes, nearby impor"
+        }
+      ]
+    },
+    {
+      "path": "modules/command_runner.py",
+      "size": 1762,
+      "extension": ".py",
+      "kind": "source",
+      "symbols": [
+        {
+          "name": "run_allowed",
+          "type": "function",
+          "line": 25,
+          "end_line": 55
+        }
+      ],
+      "routes": [],
+      "error_patterns": []
+    },
+    {
+      "path": "modules/indexer.py",
+      "size": 6093,
+      "extension": ".py",
+      "kind": "source",
+      "symbols": [
+        {
+          "name": "IndexedFile",
+          "type": "class",
+          "line": 38,
+          "end_line": 45
+        },
+        {
+          "name": "iter_repo_files",
+          "type": "function",
+          "line": 48,
+          "end_line": 57
+        },
+        {
+          "name": "file_kind",
+          "type": "function",
+          "line": 60,
+          "end_line": 71
+        },
+        {
+          "name": "safe_read_text",
+          "type": "function",
+          "line": 74,
+          "end_line": 76
+        },
+        {
+          "name": "extract_python_symbols",
+          "type": "function",
+          "line": 79,
+          "end_line": 93
+        },
+        {
+          "name": "extract_regex_symbols",
+          "type": "function",
+          "line": 96,
+          "end_line": 108
+        },
+        {
+          "name": "extract_routes",
+          "type": "function",
+          "line": 111,
+          "end_line": 116
+        },
+        {
+          "name": "extract_errors",
+          "type": "function",
+          "line": 119,
+          "end_line": 126
+        },
+        {
+          "name": "index_repository",
+          "type": "function",
+          "line": 129,
+          "end_line": 170
+        }
+      ],
+      "routes": [
+        {
+          "line": 28,
+          "snippet": "r\"(?i)(@(?:app|router)\\.(?:get|post|put|patch|delete)|path\\(|url\\(|route\\(|urlpatterns|Route::|router\\.)\""
+        },
+        {
+          "line": 134,
+          "snippet": "rel = normalize_path(path.relative_to(root))"
+        }
+      ],
+      "error_patterns": [
+        {
+          "line": 26,
+          "snippet": "ERROR_RE = re.compile(r\"(?i)\\b(error|exception|traceback|warning|failed|fatal|template does not exist)\\b\")"
+        },
+        {
+          "line": 146,
+          "snippet": "skipped.append({\"path\": rel, \"reason\": f\"read failed: {exc}\"})"
+        }
+      ]
+    },
+    {
+      "path": "modules/log_reducer.py",
+      "size": 1884,
+      "extension": ".py",
+      "kind": "source",
+      "symbols": [
+        {
+          "name": "tail_lines",
+          "type": "function",
+          "line": 17,
+          "end_line": 23
+        },
+        {
+          "name": "collect_block",
+          "type": "function",
+          "line": 26,
+          "end_line": 37
+        },
+        {
+          "name": "reduce_log",
+          "type": "function",
+          "line": 40,
+          "end_line": 56
+        }
+      ],
+      "routes": [],
+      "error_patterns": [
+        {
+          "line": 12,
+          "snippet": "r\"(?i)(error|warn|warning|critical|fatal|traceback|exception|failed|sqlstate|syntax error|permission denied|template does not exist)\""
+        },
+        {
+          "line": 14,
+          "snippet": "START_RE = re.compile(r\"^\\s*(?:\\d{4}[-/]\\d{2}[-/]\\d{2}|[A-Z][a-z]{2}\\s+\\d{1,2}|Traceback|Caused by:|org\\.|javax\\.|django\\.)\")"
+        }
+      ]
+    },
+    {
+      "path": "modules/patcher.py",
+      "size": 5886,
+      "extension": ".py",
+      "kind": "source",
+      "symbols": [
+        {
+          "name": "snapshot_diff",
+          "type": "function",
+          "line": 12,
+          "end_line": 19
+        },
+        {
+          "name": "backup_files",
+          "type": "function",
+          "line": 22,
+          "end_line": 40
+        },
+        {
+          "name": "patch_targets",
+          "type": "function",
+          "line": 43,
+          "end_line": 49
+        },
+        {
+          "name": "parse_hunk_header",
+          "type": "function",
+          "line": 52,
+          "end_line": 56
+        },
+        {
+          "name": "apply_unified_diff_fallback",
+          "type": "function",
+          "line": 59,
+          "end_line": 114
+        },
+        {
+          "name": "apply_patch",
+          "type": "function",
+          "line": 117,
+          "end_line": 148
+        }
+      ],
+      "routes": [],
+      "error_patterns": []
+    },
+    {
+      "path": "modules/reporting.py",
+      "size": 1189,
+      "extension": ".py",
+      "kind": "source",
+      "symbols": [
+        {
+          "name": "report_path",
+          "type": "function",
+          "line": 10,
+          "end_line": 11
+        },
+        {
+          "name": "load_report",
+          "type": "function",
+          "line": 14,
+          "end_line": 18
+        },
+        {
+          "name": "append_task",
+          "type": "function",
+          "line": 21,
+          "end_line": 28
+        },
+        {
+          "name": "summarize_report",
+          "type": "function",
+          "line": 31,
+          "end_line": 39
+        }
+      ],
+      "routes": [
+        {
+          "line": 10,
+          "snippet": "def report_path(root: Path) -> Path:"
+        },
+        {
+          "line": 15,
+          "snippet": "path = report_path(root)"
+        },
+        {
+          "line": 25,
+          "snippet": "path = report_path(root)"
+        }
+      ],
+      "error_patterns": []
+    },
+    {
+      "path": "modules/retriever.py",
+      "size": 4887,
+      "extension": ".py",
+      "kind": "source",
+      "symbols": [
+        {
+          "name": "tokenize",
+          "type": "function",
+          "line": 17,
+          "end_line": 18
+        },
+        {
+          "name": "load_index",
+          "type": "function",
+          "line": 21,
+          "end_line": 24
+        },
+        {
+          "name": "score_file",
+          "type": "function",
+          "line": 27,
+          "end_line": 37
+        },
+        {
+          "name": "imports_prefix",
+          "type": "function",
+          "line": 40,
+          "end_line": 46
+        },
+        {
+          "name": "matching_windows",
+          "type": "function",
+          "line": 49,
+          "end_line": 64
+        },
+        {
+          "name": "extract_context",
+          "type": "function",
+          "line": 67,
+          "end_line": 88
+        },
+        {
+          "name": "build_context_bundle",
+          "type": "function",
+          "line": 91,
+          "end_line": 112
+        }
+      ],
+      "routes": [
+        {
+          "line": 69,
+          "snippet": "rel = normalize_path(path.relative_to(root))"
+        }
+      ],
+      "error_patterns": []
+    },
+    {
+      "path": "modules/security.py",
+      "size": 4203,
+      "extension": ".py",
+      "kind": "source",
+      "symbols": [
+        {
+          "name": "normalize_path",
+          "type": "function",
+          "line": 77,
+          "end_line": 78
+        },
+        {
+          "name": "should_ignore_dir",
+          "type": "function",
+          "line": 81,
+          "end_line": 83
+        },
+        {
+          "name": "is_secret_file",
+          "type": "function",
+          "line": 86,
+          "end_line": 88
+        },
+        {
+          "name": "redact",
+          "type": "function",
+          "line": 91,
+          "end_line": 102
+        },
+        {
+          "name": "repl",
+          "type": "function",
+          "line": 95,
+          "end_line": 99
+        },
+        {
+          "name": "redact_config_value",
+          "type": "function",
+          "line": 105,
+          "end_line": 110
+        },
+        {
+          "name": "split_command",
+          "type": "function",
+          "line": 113,
+          "end_line": 116
+        },
+        {
+          "name": "command_has_shell_control",
+          "type": "function",
+          "line": 119,
+          "end_line": 120
+        },
+        {
+          "name": "is_read_only_psql",
+          "type": "function",
+          "line": 123,
+          "end_line": 137
+        },
+        {
+          "name": "is_allowed_command",
+          "type": "function",
+          "line": 140,
+          "end_line": 159
+        }
+      ],
+      "routes": [
+        {
+          "line": 77,
+          "snippet": "def normalize_path(path: str | Path) -> str:"
+        },
+        {
+          "line": 78,
+          "snippet": "return str(Path(path).as_posix())"
+        },
+        {
+          "line": 87,
+          "snippet": "name = Path(path).name"
+        },
+        {
+          "line": 124,
+          "snippet": "if not parts or Path(parts[0]).name.lower() != \"psql\":"
+        },
+        {
+          "line": 149,
+          "snippet": "executable = Path(parts[0]).name.lower()"
+        }
+      ],
+      "error_patterns": []
+    },
+    {
+      "path": "modules/__init__.py",
+      "size": 32,
+      "extension": ".py",
+      "kind": "source",
+      "symbols": [],
+      "routes": [],
+      "error_patterns": []
+    }
+  ],
+  "skipped": []
+}

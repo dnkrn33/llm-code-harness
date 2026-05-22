@@ -1,0 +1,28 @@
+# LLM Code Harness configuration.
+# This file is intentionally simple so it can be edited by hand.
+
+ignore_dirs:
+  - .git
+  - node_modules
+  - vendor
+  - build
+  - dist
+  - .cache
+
+allowlist:
+  - git status
+  - git diff
+  - grep
+  - rg
+  - php -l
+  - composer validate
+  - python manage.py check
+  - pytest
+  - npm test
+
+context:
+  max_files: 8
+  radius_lines: 24
+
+logs:
+  max_blocks: 8
